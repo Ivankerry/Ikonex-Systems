@@ -82,6 +82,33 @@ graph TD
 
 ---
 
+## 🌐 Hosting & Deployment Methods
+
+This project supports three primary hosting and deployment methods depending on the environment:
+
+### 1. Local Development Hosting
+* **Backend**: Express API running locally on port `5000` (`node server.js` or `npm run dev` with nodemon).
+* **Frontend**: Served using a lightweight, zero-dependency custom static server ([server.js](file:///c:/Users/dev/Desktop/Ikonex%20Academy/Ikonex%20Academy%20Frontend/server.js)) listening on port `3000`.
+* **SPA Fallback Routing**: The local dev server intercepts routing paths lacking file extensions (e.g. `/students`) and redirects them to `index.html` to prevent 404 errors on page reload.
+
+### 2. Single-Port Unified VPS Hosting (Recommended Production Setup)
+To bypass browser **Mixed Content Blocks** (which prevent secure `https` frontends from making requests to insecure `http` IP-based backends) without requiring a domain name:
+* Both the frontend and backend are hosted on the **same VPS server** (Port `80`).
+* **Backend + Database**: Run inside a containerized network via Docker Compose (PostgreSQL and Node API). The Node API container is bound strictly to `127.0.0.1:5000` (private).
+* **Nginx Reverse Proxy & Static Server**:
+  * Incoming traffic to the root path (`/`) serves the static frontend HTML/CSS/JS files directly from the `/var/www/Ikonex-Systems/Ikonex Academy Frontend` directory.
+  * Incoming traffic to `/api` proxies requests in the background to the backend Node.js container.
+* **Benefits**: Since the page and the API share the exact same host and port (`http://YOUR_VPS_IP`), the browser treats them as **same-origin**. This eliminates CORS configuration issues and Mixed Content restrictions out-of-the-box.
+
+### 3. Split-Hosting (Vercel Frontend + VPS Backend)
+* **Frontend**: Deployed to Vercel Free Tier using a custom build pipeline:
+  * **Build Command**: `mkdir dist && cp -r assets pages index.html vercel.json dist/ && echo "{\"api_url\": \"$API_URL\"}" > dist/config.json`
+  * **Output Directory**: `dist`
+  * **Rewrites**: A [vercel.json](file:///c:/Users/dev/Desktop/Ikonex%20Academy/Ikonex%20Academy%20Frontend/vercel.json) rewrite configuration redirects all sub-routes back to `/index.html` to support page reloads.
+* **Backend**: Hosted on the VPS inside Docker Compose, accepting cross-origin requests by registering the Vercel app domain in the `.env` `CORS_ORIGIN` variable.
+
+---
+
 ## ⚙️ Setup & Installation
 
 ### Local Development Setup
