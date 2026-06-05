@@ -16,8 +16,12 @@ const app = express();
 // Security headers
 app.use(helmet());
 
-// CORS — restrict to frontend origin in production
-app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
+// CORS — restrict to frontend origin in production (supports comma-separated list)
+const corsOrigin = process.env.CORS_ORIGIN || '*';
+const originOption = corsOrigin.includes(',') 
+  ? corsOrigin.split(',').map(o => o.trim()) 
+  : corsOrigin;
+app.use(cors({ origin: originOption }));
 
 // Request logging (dev mode)
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
