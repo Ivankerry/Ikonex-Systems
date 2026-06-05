@@ -1,0 +1,84 @@
+<!-- Results page partial. Injected into #page-content by router.js -->
+<!-- Logic is handled entirely by assets/js/pages/results.js -->
+
+<section class="page-section">
+  <!-- Tab navigation -->
+  <div style="display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 1px solid var(--color-border); padding-bottom: 12px;">
+    <button class="btn btn--secondary page-btn--active" id="tab-class-btn" style="border:none;">🏫 Class Rankings</button>
+    <button class="btn btn--secondary" id="tab-student-btn" style="border:none;">👨‍🎓 Student Report Cards</button>
+  </div>
+
+  <!-- Filter Panel -->
+  <div class="card" style="margin-bottom: 24px;">
+    <div class="card__header">
+      <h2 class="card__title">Result Selection Panel</h2>
+      <div>
+        <button class="btn btn--ghost" id="dl-class-pdf-btn" style="display: none;">📄 Class Report PDF</button>
+        <button class="btn btn--ghost" id="dl-student-pdf-btn" style="display: none;">📄 Report Card PDF</button>
+      </div>
+    </div>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end;">
+      <div class="form-group" style="margin-bottom: 0; flex: 1; min-width: 150px;">
+        <label class="form-label" for="results-stream-select">Class Stream</label>
+        <select id="results-stream-select" class="form-select">
+          <option value="">Select Stream</option>
+        </select>
+      </div>
+      
+      <!-- Student selector (hidden in class tab by default) -->
+      <div class="form-group" id="results-student-select-group" style="margin-bottom: 0; flex: 1; min-width: 180px; display: none;">
+        <label class="form-label" for="results-student-select">Student</label>
+        <select id="results-student-select" class="form-select">
+          <option value="">Select Student</option>
+        </select>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 0; flex: 1; min-width: 120px;">
+        <label class="form-label" for="results-term-select">Term</label>
+        <select id="results-term-select" class="form-select">
+          <option value="Term 1" selected>Term 1</option>
+          <option value="Term 2">Term 2</option>
+          <option value="Term 3">Term 3</option>
+        </select>
+      </div>
+      
+      <div class="form-group" style="margin-bottom: 0; flex: 1; min-width: 100px;">
+        <label class="form-label" for="results-year-select">Academic Year</label>
+        <select id="results-year-select" class="form-select">
+          <option value="2026" selected>2026</option>
+          <option value="2027">2027</option>
+          <option value="2028">2028</option>
+        </select>
+      </div>
+      
+      <button class="btn btn--primary" id="load-results-btn" style="height: 42px;">📊 Load Results</button>
+    </div>
+  </div>
+
+  <!-- Class Results View -->
+  <div id="class-results-section">
+    <div class="card">
+      <div class="card__header">
+        <h3 class="card__title">Stream Academic Ranking</h3>
+      </div>
+      <div id="class-results-container">
+        <!-- Populated by results.js -->
+        <div class="empty-state">
+          <div class="empty-state__icon">📊</div>
+          <div class="empty-state__text">Select filters above and click "Load Results" to calculate stream rankings.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Student Results View -->
+  <div id="student-results-section" style="display: none;">
+    <div id="student-results-container">
+      <!-- Populated by results.js -->
+      <div class="empty-state">
+        <div class="empty-state__icon">👨‍🎓</div>
+        <div class="empty-state__text">Select filters above and click "Load Results" to display student grade cards.</div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+<!-- Students page partial. Injected into #page-content by router.js -->
+<!-- Logic is handled entirely by assets/js/pages/students.js -->
+
+<section class="page-section">
+  <div class="card">
+    <div class="card__header" style="flex-wrap: wrap; gap: 16px;">
+      <h2 class="card__title">Student Directory</h2>
+      <div style="display: flex; gap: 12px; flex-grow: 1; justify-content: flex-end; flex-wrap: wrap;">
+        <input type="text" id="student-search-input" class="form-input" placeholder="🔍 Search name or adm no..." style="max-width: 260px;" />
+        <select id="student-stream-filter" class="form-select" style="max-width: 180px;">
+          <!-- Loaded by students.js -->
+          <option value="">All Streams</option>
+        </select>
+        <button class="btn btn--primary" id="register-student-btn">Register Student</button>
+      </div>
+    </div>
+    
+    <div id="students-table-container">
+      <!-- Populated by students.js -->
+      <div class="skeleton skeleton-row" style="margin-bottom: 8px;"></div>
+      <div class="skeleton skeleton-row" style="margin-bottom: 8px;"></div>
+      <div class="skeleton skeleton-row"></div>
+    </div>
+  </div>
+</section>

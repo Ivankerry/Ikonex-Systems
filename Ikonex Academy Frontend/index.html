@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ikonex Academy — Student Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/layout.css" />
+  <link rel="stylesheet" href="/assets/css/components.css" />
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <!-- Rendered by sidebar.js -->
+    </aside>
+    <div class="main-wrapper">
+      <header class="topbar" id="topbar">
+        <!-- Rendered by topbar.js -->
+      </header>
+      <main class="main-content" id="page-content">
+        <!-- Page partials injected here by router.js -->
+      </main>
+    </div>
+  </div>
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal">
+      <div class="modal__header">
+        <h3 class="modal__title" id="modal-title"></h3>
+        <button class="modal__close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal__body" id="modal-body"></div>
+      <div class="modal__footer">
+        <button class="btn btn--ghost" id="modal-cancel">Cancel</button>
+        <button class="btn btn--primary" id="modal-confirm">Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="toast-container" id="toast-container"></div>
+  <script type="module" src="/assets/js/components/sidebar.js"></script>
+  <script type="module" src="/assets/js/components/topbar.js"></script>
+  <script type="module" src="/assets/js/router.js"></script>
+</body>
+</html>

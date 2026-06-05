@@ -1,0 +1,24 @@
+<!-- Subjects page partial. Injected into #page-content by router.js -->
+<!-- Logic is handled entirely by assets/js/pages/subjects.js -->
+
+<section class="page-section">
+  <div class="card">
+    <div class="card__header" style="flex-wrap: wrap; gap: 16px;">
+      <h2 class="card__title">Subjects Catalog</h2>
+      <div style="display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap; flex-grow: 1;">
+        <select id="subject-stream-filter" class="form-select" style="max-width: 180px;">
+          <!-- Loaded by subjects.js -->
+          <option value="">All Streams</option>
+        </select>
+        <button class="btn btn--primary" id="add-subject-btn">➕ Add Subject</button>
+      </div>
+    </div>
+    
+    <div id="subjects-table-container">
+      <!-- Populated by subjects.js -->
+      <div class="skeleton skeleton-row" style="margin-bottom: 8px;"></div>
+      <div class="skeleton skeleton-row" style="margin-bottom: 8px;"></div>
+      <div class="skeleton skeleton-row"></div>
+    </div>
+  </div>
+</section>
