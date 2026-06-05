@@ -20,6 +20,15 @@ export function openModal(title, bodyHTML, onConfirm) {
   titleEl.textContent = title;
   bodyEl.innerHTML = bodyHTML;
   
+  // Handle form submission via Enter key
+  const form = bodyEl.querySelector('form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      confirmBtn.click();
+    });
+  }
+  
   // Set up confirm action
   currentOnConfirm = onConfirm;
   confirmBtn.textContent = 'Save';
@@ -79,6 +88,18 @@ if (typeof document !== 'undefined') {
     if (confirmBtn) {
       confirmBtn.addEventListener('click', async () => {
         if (currentOnConfirm) {
+          // Trigger browser HTML5 input validations first if a form exists
+          const bodyEl = document.getElementById('modal-body');
+          if (bodyEl) {
+            const form = bodyEl.querySelector('form');
+            if (form && typeof form.reportValidity === 'function') {
+              if (!form.reportValidity()) {
+                return; // Stop execution if form validation failed
+              }
+            }
+          }
+
+          const originalText = confirmBtn.textContent;
           try {
             confirmBtn.disabled = true;
             confirmBtn.textContent = 'Loading...';
@@ -88,6 +109,7 @@ if (typeof document !== 'undefined') {
             console.error(err);
           } finally {
             confirmBtn.disabled = false;
+            confirmBtn.textContent = originalText;
           }
         }
       });

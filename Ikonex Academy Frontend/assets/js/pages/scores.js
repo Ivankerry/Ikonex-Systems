@@ -330,6 +330,16 @@ async function handleSaveScore(id = null) {
   const caScore = document.getElementById('ca-score')?.value;
   const examScore = document.getElementById('exam-score')?.value;
 
+  const numRegex = /^\d+(\.\d+)?$/;
+  if (caScore && !numRegex.test(caScore.trim())) {
+    showToast('CA score must be a valid numeric value (digits only)', 'error');
+    throw new Error('CA score must be numeric');
+  }
+  if (examScore && !numRegex.test(examScore.trim())) {
+    showToast('Exam score must be a valid numeric value (digits only)', 'error');
+    throw new Error('Exam score must be numeric');
+  }
+
   const data = {
     student_id: Number(studentId),
     subject_id: Number(selectedSubjectId),

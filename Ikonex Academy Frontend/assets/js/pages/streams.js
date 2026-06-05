@@ -172,9 +172,16 @@ async function handleSaveStream(id = null) {
   const yearEl = document.getElementById('stream-year');
   if (!nameEl || !yearEl) return;
 
+  const yearVal = yearEl.value.trim();
+  const yearRegex = /^\d{4}$/;
+  if (!yearRegex.test(yearVal)) {
+    showToast('Academic Year must be a 4-digit number', 'error');
+    throw new Error('Academic Year must be a 4-digit number');
+  }
+
   const data = {
     name: nameEl.value,
-    year: Number(yearEl.value)
+    year: Number(yearVal)
   };
 
   const err = validateStreamForm(data);

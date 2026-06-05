@@ -273,6 +273,9 @@ async function handleDeleteSubject(id) {
 function validateSubjectForm(data) {
   if (!data.name || data.name.trim().length < 2)
     return 'Subject name is required and must be at least 2 characters';
+  if (/\d/.test(data.name)) {
+    return 'Subject name cannot contain numbers';
+  }
   if (!data.code || data.code.trim().length < 2)
     return 'Subject code is required and must be at least 2 characters';
   return null;

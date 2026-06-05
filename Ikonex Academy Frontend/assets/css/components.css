@@ -54,7 +54,6 @@
   align-items: center;
   gap: 18px;
   border: 1px solid var(--color-border);
-  border-left: 5px solid var(--color-accent);
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -92,12 +91,6 @@
   color: var(--color-text-muted);
   font-weight: 500;
 }
-
-/* Color overrides for stat cards */
-.stat-card--students { border-left-color: var(--color-accent); }
-.stat-card--streams { border-left-color: #7C3AED; }
-.stat-card--subjects { border-left-color: #0EA5E9; }
-.stat-card--avg-score { border-left-color: var(--color-success); }
 
 /* Tables */
 .table-responsive {

@@ -3,6 +3,9 @@
 exports.validateCreateSubject = (body) => {
   if (!body.name || typeof body.name !== 'string' || body.name.trim().length < 2)
     return 'Subject name is required and must be at least 2 characters';
+  if (/\d/.test(body.name)) {
+    return 'Subject name cannot contain numbers';
+  }
   if (!body.code || typeof body.code !== 'string' || body.code.trim().length < 2)
     return 'Subject code is required and must be at least 2 characters';
   return null;
@@ -11,6 +14,9 @@ exports.validateCreateSubject = (body) => {
 exports.validateUpdateSubject = (body) => {
   if (!body.name && !body.code && !body.description)
     return 'Provide at least one field to update';
+  if (body.name && /\d/.test(body.name)) {
+    return 'Subject name cannot contain numbers';
+  }
   return null;
 };
 

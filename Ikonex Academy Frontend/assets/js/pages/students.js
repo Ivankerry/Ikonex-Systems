@@ -334,6 +334,20 @@ function validateStudentForm(data) {
   if (!data.first_name?.trim())       return 'First name is required';
   if (!data.last_name?.trim())        return 'Last name is required';
   if (!data.admission_number?.trim()) return 'Admission number is required';
+
+  const nameRegex = /^[A-Za-z\s'-]+$/;
+  if (!nameRegex.test(data.first_name)) {
+    return 'First name must contain only letters, spaces, hyphens, or apostrophes';
+  }
+  if (!nameRegex.test(data.last_name)) {
+    return 'Last name must contain only letters, spaces, hyphens, or apostrophes';
+  }
+
+  const admRegex = /^[A-Za-z0-9/-]+$/;
+  if (!admRegex.test(data.admission_number)) {
+    return 'Admission number must contain only letters, numbers, hyphens, or slashes';
+  }
+
   if (data.gender && !['Male','Female','Other'].includes(data.gender))
     return 'Gender must be Male, Female, or Other';
   if (!data.stream_id || isNaN(data.stream_id)) return 'A valid stream is required';
