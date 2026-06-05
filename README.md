@@ -48,7 +48,6 @@ graph TD
 * **Horizontal Stats Grid**: Centered layout grouping counts and metrics cleanly in a 4-column flow.
 * **Fail-Safe Loading States**: Save buttons in modals dynamically store original labels (e.g. "Save", "Confirm"), display "Loading..." on click, and reliably restore the original text and enable interaction if an error occurs.
 * **SPA Page Reload Support**: Custom local web server (`server.js`) and production rewrite configuration (`vercel.json`) ensure page reloads on sub-routes (e.g., `/students`) resolve to `index.html` instead of throwing a 404.
-* **Realistically Seeded Data**: Database seeder generates simulated student records with specific academic aptitude factors to showcase natural bell curves and rank sorting rather than flat, random distributions.
 
 ---
 
@@ -60,8 +59,7 @@ graph TD
 │   ├── controllers/       # HTTP controllers (MVC)
 │   ├── db/
 │   │   ├── migrations/    # Schema initialization migration scripts
-│   │   ├── queries/       # Parameterized SQL query layers
-│   │   └── seed.js        # Realistic DB seeding script
+│   │   └── queries/       # Parameterized SQL query layers
 │   ├── middleware/        # Express error & validate middlewares
 │   ├── routes/            # Decoupled REST routes
 │   ├── services/          # Business logic & PDF Report generation
@@ -109,11 +107,7 @@ graph TD
    ```bash
    psql -d ikonex_academy -f db/migrations/001_init.sql
    ```
-5. Seed the database with mock test data:
-   ```bash
-   npm run seed
-   ```
-6. Launch the server in development mode (using nodemon):
+3. Launch the server in development mode (using nodemon):
    ```bash
    npm run dev
    ```
@@ -167,13 +161,7 @@ sudo docker compose up -d --build
 * **PostgreSQL Service (`db`)**: Isolated inside the Docker network. Schema migrations apply automatically on first launch via volume mounting.
 * **Express Backend Service (`backend`)**: Restricts port mapping to `127.0.0.1:5000:5000` on the host, preventing bypass of the host firewall.
 
-### 4. Seed Database on VPS
-To populate the Postgres database container with 64 students and detailed grade scores:
-```bash
-sudo docker compose exec backend npm run seed
-```
-
-### 5. Setup Host Nginx Reverse Proxy
+### 4. Setup Host Nginx Reverse Proxy
 Copy the proxy template to Nginx and enable rate-limiting (pre-configured for 10 requests/sec limit and 20 burst tolerance):
 ```bash
 sudo cp nginx.conf /etc/nginx/sites-available/ikonex-academy-api
