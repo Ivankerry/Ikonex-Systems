@@ -79,7 +79,7 @@ export async function navigate(path, pushState = true) {
     console.error(`Navigation error: ${err.message}`);
     pageContent.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">⚠️</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">Failed to load content: ${err.message}</div>
         <button class="btn btn--primary" id="retry-nav-btn">Retry</button>
       </div>

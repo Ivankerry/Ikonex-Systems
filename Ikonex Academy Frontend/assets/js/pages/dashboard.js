@@ -21,28 +21,28 @@ export async function initDashboard() {
     if (statsGrid) {
       statsGrid.innerHTML = `
         <div class="stat-card stat-card--students">
-          <div class="stat-card__icon">👨‍🎓</div>
+          <div class="stat-card__icon"></div>
           <div class="stat-card__info">
             <div class="stat-card__value">${stats.total_students}</div>
             <div class="stat-card__label">Total Students</div>
           </div>
         </div>
         <div class="stat-card stat-card--streams">
-          <div class="stat-card__icon">🏫</div>
+          <div class="stat-card__icon"></div>
           <div class="stat-card__info">
             <div class="stat-card__value">${stats.total_streams}</div>
             <div class="stat-card__label">Total Streams</div>
           </div>
         </div>
         <div class="stat-card stat-card--subjects">
-          <div class="stat-card__icon">📚</div>
+          <div class="stat-card__icon"></div>
           <div class="stat-card__info">
             <div class="stat-card__value">${stats.total_subjects}</div>
             <div class="stat-card__label">Total Subjects</div>
           </div>
         </div>
         <div class="stat-card stat-card--avg-score">
-          <div class="stat-card__icon">📊</div>
+          <div class="stat-card__icon"></div>
           <div class="stat-card__info">
             <div class="stat-card__value">${stats.average_score.toFixed(1)}%</div>
             <div class="stat-card__label">Average Score</div>
@@ -57,7 +57,7 @@ export async function initDashboard() {
       if (topStudents.length === 0) {
         performersContainer.innerHTML = `
           <div class="empty-state">
-            <div class="empty-state__icon">📭</div>
+            <div class="empty-state__icon"></div>
             <div class="empty-state__text">No results recorded yet. Please register scores first.</div>
           </div>
         `;

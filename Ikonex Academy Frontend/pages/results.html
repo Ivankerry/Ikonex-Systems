@@ -4,8 +4,8 @@
 <section class="page-section">
   <!-- Tab navigation -->
   <div style="display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 1px solid var(--color-border); padding-bottom: 12px;">
-    <button class="btn btn--secondary page-btn--active" id="tab-class-btn" style="border:none;">🏫 Class Rankings</button>
-    <button class="btn btn--secondary" id="tab-student-btn" style="border:none;">👨‍🎓 Student Report Cards</button>
+    <button class="btn btn--secondary page-btn--active" id="tab-class-btn" style="border:none;">Class Rankings</button>
+    <button class="btn btn--secondary" id="tab-student-btn" style="border:none;">Student Report Cards</button>
   </div>
 
   <!-- Filter Panel -->
@@ -13,8 +13,8 @@
     <div class="card__header">
       <h2 class="card__title">Result Selection Panel</h2>
       <div>
-        <button class="btn btn--ghost" id="dl-class-pdf-btn" style="display: none;">📄 Class Report PDF</button>
-        <button class="btn btn--ghost" id="dl-student-pdf-btn" style="display: none;">📄 Report Card PDF</button>
+        <button class="btn btn--ghost" id="dl-class-pdf-btn" style="display: none;">Class Report PDF</button>
+        <button class="btn btn--ghost" id="dl-student-pdf-btn" style="display: none;">Report Card PDF</button>
       </div>
     </div>
     <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end;">
@@ -51,7 +51,7 @@
         </select>
       </div>
       
-      <button class="btn btn--primary" id="load-results-btn" style="height: 42px;">📊 Load Results</button>
+      <button class="btn btn--primary" id="load-results-btn" style="height: 42px;">Load Results</button>
     </div>
   </div>
 
@@ -64,7 +64,7 @@
       <div id="class-results-container">
         <!-- Populated by results.js -->
         <div class="empty-state">
-          <div class="empty-state__icon">📊</div>
+          <div class="empty-state__icon"></div>
           <div class="empty-state__text">Select filters above and click "Load Results" to calculate stream rankings.</div>
         </div>
       </div>
@@ -76,7 +76,7 @@
     <div id="student-results-container">
       <!-- Populated by results.js -->
       <div class="empty-state">
-        <div class="empty-state__icon">👨‍🎓</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">Select filters above and click "Load Results" to display student grade cards.</div>
       </div>
     </div>

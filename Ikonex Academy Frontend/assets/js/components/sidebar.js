@@ -10,27 +10,27 @@ export function renderSidebar() {
 
   sidebar.innerHTML = `
     <div class="sidebar__logo">
-      <span>🎓</span>
+      <span></span>
       <span>Ikonex Academy</span>
     </div>
     <ul class="sidebar__nav">
       <li class="sidebar__nav-item" data-path="/" data-link>
-        <span>🏠</span> Dashboard
+        <span></span> Dashboard
       </li>
       <li class="sidebar__nav-item" data-path="/streams" data-link>
-        <span>🏫</span> Class Streams
+        <span></span> Class Streams
       </li>
       <li class="sidebar__nav-item" data-path="/students" data-link>
-        <span>👨‍🎓</span> Students
+        <span></span> Students
       </li>
       <li class="sidebar__nav-item" data-path="/subjects" data-link>
-        <span>📚</span> Subjects
+        <span></span> Subjects
       </li>
       <li class="sidebar__nav-item" data-path="/scores" data-link>
-        <span>📝</span> Scores
+        <span></span> Scores
       </li>
       <li class="sidebar__nav-item" data-path="/results" data-link>
-        <span>📊</span> Results
+        <span></span> Results
       </li>
     </ul>
     <div style="padding: 20px; font-size: 0.75rem; color: rgba(255,255,255,0.4); text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.06);">
