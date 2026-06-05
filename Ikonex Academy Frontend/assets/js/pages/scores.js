@@ -285,7 +285,7 @@ function buildScoreForm(existing = null, studentId = null) {
       <!-- Hidden fields for submission -->
       <input type="hidden" id="form-student-id" value="${existing ? existing.student_id : (studentId || '')}" />
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div class="grid-split">
         <div class="form-group">
           <label class="form-label" for="ca-score">CA Score (Max 40)</label>
           <input class="form-input" type="number" step="0.01" id="ca-score" min="0" max="40" value="${existing ? existing.ca_score : ''}" placeholder="e.g. 28.5" required />

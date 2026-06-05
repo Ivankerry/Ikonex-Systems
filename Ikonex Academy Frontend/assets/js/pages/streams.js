@@ -265,7 +265,7 @@ async function viewStreamDetail(id) {
     const bodyEl = document.getElementById('modal-body');
     if (bodyEl) {
       bodyEl.innerHTML = `
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div class="grid-split">
           <div>
             <h4 style="margin-bottom: 12px; border-bottom: 1px solid var(--color-border); padding-bottom: 6px;">Subjects Assigned</h4>
             <ul style="display: flex; flex-direction: column; gap: 8px; max-height: 250px; overflow-y: auto;">

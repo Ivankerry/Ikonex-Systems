@@ -357,7 +357,7 @@ function renderStudentResultsCard(result, position, totalClassSize) {
   const overallGrade = formatGrade(result.average);
 
   container.innerHTML = `
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+    <div class="results-stats-grid">
       <div class="card" style="border-left: 4px solid var(--color-accent); padding: 16px;">
         <div style="font-size: 0.75rem; color: var(--color-text-muted); font-weight: 600; text-transform: uppercase;">Total Marks</div>
         <div style="font-size: 1.5rem; font-weight: 700; margin-top: 4px;">${result.total_marks.toFixed(2)}</div>

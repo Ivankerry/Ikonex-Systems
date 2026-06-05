@@ -228,7 +228,7 @@ function buildStudentForm(streams, existing = null) {
 
   return `
     <form id="student-form" onsubmit="event.preventDefault();">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div class="grid-split">
         <div class="form-group">
           <label class="form-label" for="first-name">First Name</label>
           <input class="form-input" type="text" id="first-name" value="${existing ? existing.first_name : ''}" required />
@@ -242,7 +242,7 @@ function buildStudentForm(streams, existing = null) {
         <label class="form-label" for="admission-number">Admission Number</label>
         <input class="form-input" type="text" id="admission-number" value="${existing ? existing.admission_number : ''}" placeholder="e.g. ADM/2026/001" required />
       </div>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div class="grid-split">
         <div class="form-group">
           <label class="form-label" for="date-of-birth">Date of Birth</label>
           <input class="form-input" type="date" id="date-of-birth" value="${dobVal}" />
