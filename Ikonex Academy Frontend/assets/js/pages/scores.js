@@ -98,7 +98,7 @@ function clearScoresGrid() {
   if (container) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">📝</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">Select filters above and click "Load Scores" to manage student results.</div>
       </div>
     `;
@@ -145,7 +145,7 @@ async function handleLoadScores() {
     showToast(err.message, 'error');
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">⚠️</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">Failed to load scores data: ${err.message}</div>
       </div>
     `;
@@ -162,7 +162,7 @@ function renderScoresGrid(students, scores) {
   if (students.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">👨‍🎓</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">No students registered in this class stream yet.</div>
       </div>
     `;

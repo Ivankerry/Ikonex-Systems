@@ -74,7 +74,7 @@ async function loadSubjects(streamId = null) {
     showToast(err.message, 'error');
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">⚠️</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">Failed to load subjects: ${err.message}</div>
       </div>
     `;
@@ -92,7 +92,7 @@ function renderSubjectsTable(subjects) {
   if (subjects.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">📚</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">No subjects found. Add a subject to get started.</div>
       </div>
     `;

@@ -79,7 +79,7 @@ async function loadStudents() {
     showToast(err.message, 'error');
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">⚠️</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">Failed to load students: ${err.message}</div>
       </div>
     `;
@@ -97,7 +97,7 @@ function renderStudentsTable(students) {
   if (students.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">👨‍🎓</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">No students found matching your criteria.</div>
       </div>
     `;

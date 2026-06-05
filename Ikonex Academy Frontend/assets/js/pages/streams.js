@@ -49,7 +49,7 @@ async function loadStreams() {
     showToast(err.message, 'error');
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">⚠️</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">Failed to load class streams: ${err.message}</div>
       </div>
     `;
@@ -67,7 +67,7 @@ function renderStreamsTable(streams) {
   if (streams.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">🏫</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">No class streams found. Add one to get started!</div>
       </div>
     `;
@@ -256,10 +256,10 @@ async function viewStreamDetail(id) {
     const subjects = subjectsRes.success ? subjectsRes.data : [];
     const students = studentsRes.success ? studentsRes.data : [];
 
-    let subjectsHTML = subjects.map(s => `<li>📚 ${s.name} (${s.code})</li>`).join('');
+    let subjectsHTML = subjects.map(s => `<li>${s.name} (${s.code})</li>`).join('');
     if (subjects.length === 0) subjectsHTML = '<li style="color: var(--color-text-muted);">No subjects assigned yet.</li>';
 
-    let studentsHTML = students.map(s => `<li>👨‍🎓 ${s.first_name} ${s.last_name} (${s.admission_number})</li>`).join('');
+    let studentsHTML = students.map(s => `<li>${s.first_name} ${s.last_name} (${s.admission_number})</li>`).join('');
     if (students.length === 0) studentsHTML = '<li style="color: var(--color-text-muted);">No students registered in this stream.</li>';
 
     const bodyEl = document.getElementById('modal-body');

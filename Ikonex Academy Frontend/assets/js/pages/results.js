@@ -178,7 +178,7 @@ function clearResultsView() {
   if (classContainer) {
     classContainer.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">📊</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">Select Stream, Term, and Year, and click "Load Results".</div>
       </div>
     `;
@@ -187,7 +187,7 @@ function clearResultsView() {
   if (studentContainer) {
     studentContainer.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">👨‍🎓</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">Select Stream, Student, Term, and Year, and click "Load Results".</div>
       </div>
     `;
@@ -255,7 +255,7 @@ async function handleLoadResults() {
     showToast(err.message, 'error');
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">⚠️</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">Failed to compute results: ${err.message}</div>
       </div>
     `;
@@ -273,7 +273,7 @@ function renderClassResultsTable(results) {
   if (results.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">📊</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">No results recorded in this class stream for the selected term/year.</div>
       </div>
     `;
@@ -332,7 +332,7 @@ function renderStudentResultsCard(result, position, totalClassSize) {
   if (!result.scores || result.scores.length === 0) {
     container.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state__icon">📭</div>
+        <div class="empty-state__icon"></div>
         <div class="empty-state__text">No scores registered for this student in the selected term/year.</div>
       </div>
     `;
