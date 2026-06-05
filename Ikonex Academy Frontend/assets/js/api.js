@@ -1,7 +1,7 @@
 // api.js
 // Central API layer. All fetch calls go here. No DOM manipulation.
 
-const BASE_URL = 'http://localhost:5000/api'; // Update to production URL when deployed
+const BASE_URL = 'http://162.35.160.74/api'; // Update to production URL when deployed
 
 // ---- Generic request helper ----
 async function request(method, path, body = null) {
