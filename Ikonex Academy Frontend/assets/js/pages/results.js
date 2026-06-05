@@ -305,7 +305,7 @@ function renderClassResultsTable(results) {
         <td>${r.admission_no}</td>
         <td>${r.total_marks.toFixed(2)}</td>
         <td><strong>${r.average.toFixed(2)}%</strong></td>
-        <td><span class="badge ${gradeObj.cssClass}">${r.grade} — ${r.grade_label}</span></td>
+        <td><span class="badge ${gradeObj.cssClass}">${r.grade} - ${r.grade_label}</span></td>
       </tr>
     `;
   });

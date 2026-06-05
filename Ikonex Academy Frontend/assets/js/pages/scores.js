@@ -239,7 +239,7 @@ function renderScoresGrid(students, scores) {
       const scoreId = Number(btn.getAttribute('data-id'));
       const score = currentScores.find(s => s.id === scoreId);
       if (score) {
-        openModal(`Edit Score — ${score.first_name} ${score.last_name}`, buildScoreForm(score), () => handleSaveScore(score.id));
+        openModal(`Edit Score - ${score.first_name} ${score.last_name}`, buildScoreForm(score), () => handleSaveScore(score.id));
       }
     });
   });
@@ -260,7 +260,7 @@ function renderScoresGrid(students, scores) {
     btn.addEventListener('click', () => {
       const studentId = Number(btn.getAttribute('data-student-id'));
       const name = btn.getAttribute('data-student-name');
-      openModal(`Record Score — ${name}`, buildScoreForm(null, studentId), () => handleSaveScore());
+      openModal(`Record Score - ${name}`, buildScoreForm(null, studentId), () => handleSaveScore());
     });
   });
 }

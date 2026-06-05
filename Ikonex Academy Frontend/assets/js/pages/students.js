@@ -352,7 +352,7 @@ async function viewStudentDetail(studentId) {
   const term = 'Term 1';
   const year = 2026;
 
-  openModal(`${student.first_name} ${student.last_name} — Score Overview`, `
+  openModal(`${student.first_name} ${student.last_name} - Score Overview`, `
     <div style="min-height: 200px; display: flex; align-items: center; justify-content: center;">
       <div class="skeleton skeleton-row" style="width: 100%;"></div>
     </div>
@@ -426,7 +426,7 @@ async function viewStudentDetail(studentId) {
           <div style="display: flex; gap: 16px; margin-top: 20px; background: var(--color-bg); padding: 12px; border-radius: var(--radius-sm);">
             <div>Total: <strong>${results.total_marks}</strong></div>
             <div>Average: <strong>${results.average.toFixed(2)}%</strong></div>
-            <div>Grade: <span class="badge badge--info">${results.grade} — ${results.grade_label}</span></div>
+            <div>Grade: <span class="badge badge--info">${results.grade} - ${results.grade_label}</span></div>
           </div>
         ` : ''}
       `;

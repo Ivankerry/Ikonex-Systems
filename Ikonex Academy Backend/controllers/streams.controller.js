@@ -1,5 +1,5 @@
 // streams.controller.js
-// HTTP layer for stream management. No business logic — delegates to streams.service.js.
+// HTTP layer for stream management. No business logic - delegates to streams.service.js.
 
 const service    = require('../services/streams.service');
 const { success, created, noContent } = require('../utils/apiResponse');

@@ -38,7 +38,7 @@ exports.generateStudentReportCard = async (studentId, term, year, res) => {
   // --- PDF Layout ---
   // Header: School name, term, year
   doc.fontSize(20).font('Helvetica-Bold').text('IKONEX ACADEMY', { align: 'center' });
-  doc.fontSize(12).font('Helvetica').text(`Student Report Card — ${term} ${year}`, { align: 'center' });
+  doc.fontSize(12).font('Helvetica').text(`Student Report Card - ${term} ${year}`, { align: 'center' });
   doc.moveDown();
 
   // Student details box
@@ -77,7 +77,7 @@ exports.generateStudentReportCard = async (studentId, term, year, res) => {
   // Summary
   doc.font('Helvetica-Bold').text(`Total Marks: ${result.total_marks}`);
   doc.text(`Average Score: ${result.average}`);
-  doc.text(`Overall Grade: ${result.grade} — ${result.grade_label}`);
+  doc.text(`Overall Grade: ${result.grade} - ${result.grade_label}`);
 
   // Grading scale reference
   doc.moveDown(2);
@@ -110,7 +110,7 @@ exports.generateClassReport = async (streamId, term, year, res) => {
 
   // Header
   doc.fontSize(18).font('Helvetica-Bold').text('IKONEX ACADEMY', { align: 'center' });
-  doc.fontSize(12).font('Helvetica').text(`Class Performance Report — ${stream.name} | ${term} ${year}`, { align: 'center' });
+  doc.fontSize(12).font('Helvetica').text(`Class Performance Report - ${stream.name} | ${term} ${year}`, { align: 'center' });
   doc.moveDown();
 
   // Ranked table

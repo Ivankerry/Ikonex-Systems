@@ -1,5 +1,5 @@
 -- =============================================
--- Ikonex Academy — Database Schema
+-- Ikonex Academy - Database Schema
 -- Run: psql -d ikonex_academy -f 001_init.sql
 -- =============================================
 

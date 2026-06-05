@@ -1,5 +1,5 @@
 // reports.controller.js
-// Streams PDF directly to the response — does NOT return JSON.
+// Streams PDF directly to the response - does NOT return JSON.
 
 const reportsService = require('../services/reports.service');
 

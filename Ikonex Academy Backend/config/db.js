@@ -1,6 +1,6 @@
 // config/db.js
 // PostgreSQL connection pool using node-postgres.
-// All database queries in db/queries/ use this pool — never create a new Pool elsewhere.
+// All database queries in db/queries/ use this pool - never create a new Pool elsewhere.
 
 const { Pool } = require('pg');
 

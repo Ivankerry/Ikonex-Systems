@@ -1,6 +1,6 @@
 // app.js
 // Express application setup. Registers middleware, mounts routes, and attaches error handlers.
-// Does NOT start the HTTP server — that happens in server.js.
+// Does NOT start the HTTP server - that happens in server.js.
 
 const express = require('express');
 const cors    = require('cors');
@@ -16,7 +16,7 @@ const app = express();
 // Security headers
 app.use(helmet());
 
-// CORS — restrict to frontend origin in production (supports comma-separated list)
+// CORS - restrict to frontend origin in production (supports comma-separated list)
 const corsOrigin = process.env.CORS_ORIGIN || '*';
 const originOption = corsOrigin.includes(',') 
   ? corsOrigin.split(',').map(o => o.trim()) 
@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 // All API routes
 app.use('/api', router);
 
-// 404 and error handlers — must be last
+// 404 and error handlers - must be last
 app.use(notFound);
 app.use(errorHandler);
 
