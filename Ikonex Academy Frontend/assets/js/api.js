@@ -1,10 +1,28 @@
-// api.js
-// Central API layer. All fetch calls go here. No DOM manipulation.
+let BASE_URL = 'http://localhost:5000/api'; // Default fallback
 
-const BASE_URL = 'http://162.35.160.74/api'; // Update to production URL when deployed
+// Asynchronously load the API base URL from the git-ignored config.json
+async function loadConfig() {
+  try {
+    const res = await fetch('/config.json');
+    if (res.ok) {
+      const config = await res.json();
+      if (config.api_url) {
+        BASE_URL = config.api_url;
+      }
+    }
+  } catch (err) {
+    // Falls back silently to default localhost URL
+  }
+}
+
+// Kick off config loading immediately on file load
+const configPromise = loadConfig();
 
 // ---- Generic request helper ----
 async function request(method, path, body = null) {
+  // Wait for config loading promise to complete
+  await configPromise;
+
   const options = {
     method,
     headers: { 'Content-Type': 'application/json' },
