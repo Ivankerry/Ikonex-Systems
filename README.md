@@ -99,14 +99,6 @@ To bypass browser **Mixed Content Blocks** (which prevent secure `https` fronten
   * Incoming traffic to the root path (`/`) serves the static frontend HTML/CSS/JS files directly from the `/var/www/Ikonex-Systems/Ikonex Academy Frontend` directory.
   * Incoming traffic to `/api` proxies requests in the background to the backend Node.js container.
 * **Benefits**: Since the page and the API share the exact same host and port (`http://YOUR_VPS_IP`), the browser treats them as **same-origin**. This eliminates CORS configuration issues and Mixed Content restrictions out-of-the-box.
-
-### 3. Split-Hosting (Vercel Frontend + VPS Backend)
-* **Frontend**: Deployed to Vercel Free Tier using a custom build pipeline:
-  * **Build Command**: `mkdir dist && cp -r assets pages index.html vercel.json dist/ && echo "{\"api_url\": \"$API_URL\"}" > dist/config.json`
-  * **Output Directory**: `dist`
-  * **Rewrites**: A [vercel.json](file:///c:/Users/dev/Desktop/Ikonex%20Academy/Ikonex%20Academy%20Frontend/vercel.json) rewrite configuration redirects all sub-routes back to `/index.html` to support page reloads.
-* **Backend**: Hosted on the VPS inside Docker Compose, accepting cross-origin requests by registering the Vercel app domain in the `.env` `CORS_ORIGIN` variable.
-
 ---
 
 ## ⚙️ Setup & Installation
