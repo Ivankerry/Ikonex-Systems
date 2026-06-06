@@ -28,7 +28,7 @@ This document provides a comprehensive guide to setting up, deploying, and using
 3. Set up the `.env` file:
    ```env
    PORT=5000
-   DATABASE_URL=postgresql://postgres:mukoya2005@localhost:5432/ikonex_academy
+   DATABASE_URL=postgresql://postgres:dbpass@localhost:5432/ikonex_academy
    NODE_ENV=development
    CORS_ORIGIN=http://localhost:3000
    DB_SSL=false
