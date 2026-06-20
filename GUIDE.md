@@ -9,8 +9,8 @@ This document provides a comprehensive guide to setting up, deploying, and using
 
 * **Git Repository URL**: `https://github.com/Ivankerry/Ikonex-Systems.git`
 * **Hosted Application URL (Primary - Unified VPS)**: [http://162.35.160.74](http://162.35.160.74)
-* **Hosted Application URL (Alternative - Vercel)**: [https://ikonex-systems.vercel.app](https://ikonex-systems.vercel.app)
-  *(Note: Vercel runs on HTTPS. To call the HTTP VPS API from Vercel without browser mixed-content blocks, enable "Insecure Content" in Vercel's site settings. The Unified VPS URL does not require this as it uses same-origin routing.)*
+
+
 
 ---
 
@@ -61,9 +61,9 @@ This document provides a comprehensive guide to setting up, deploying, and using
 
 ---
 
-## 🚢 VPS Deployment (Unified Same-Origin Configuration)
+## 🚢 VPS Deployment (Dockerized Same-Origin Configuration)
 
-This configuration serves the frontend assets and proxies API calls under a single port (80) on the VPS, avoiding CORS issues and browser mixed-content blocks.
+This configuration serves the frontend assets and proxies API calls entirely through Docker Compose, avoiding CORS issues and making deployment seamless.
 
 1. **SSH into the VPS**:
    ```bash
@@ -71,31 +71,44 @@ This configuration serves the frontend assets and proxies API calls under a sing
    ```
 2. **Clone/Pull code**:
    ```bash
-   cd /var/www/Ikonex-Systems && git pull
+   mkdir -p /var/www/
+   cd /var/www/
+   git clone https://github.com/Ivankerry/Ikonex-Systems.git ikonex-academy
    ```
 3. **Configure the VPS `.env` File**:
-   Write the `.env` configuration file in `/var/www/Ikonex-Systems/Ikonex Academy Backend`:
+   Write the `.env` configuration file in `/var/www/ikonex-academy/Ikonex Academy Backend`:
+   ```bash
+   cd "/var/www/ikonex-academy/Ikonex Academy Backend"
+   cp .env.production.example .env
+   nano .env
+   ```
    ```env
    DB_USER=postgres
-   DB_PASSWORD=mukoya2005
+   DB_PASSWORD=YOUR_SECURE_PASSWORD
    DB_NAME=ikonex_academy
-   CORS_ORIGIN=http://localhost:3000,http://162.35.160.74
+   CORS_ORIGIN=http://162.35.160.74:8080
    ```
-4. **Launch Backend Containers (Docker Compose)**:
+4. **Set Frontend Config**:
+   Configure the frontend to point to the correct API:
    ```bash
-   cd "/var/www/Ikonex-Systems/Ikonex Academy Backend" && sudo docker compose up -d --build
+   cd "/var/www/ikonex-academy/Ikonex Academy Frontend"
+   cp config.json.example config.json
+   nano config.json
    ```
-5. **Configure Nginx**:
-   Copy Nginx template, symlink it to enabled-sites, and reload Nginx:
-   ```bash
-   sudo cp "/var/www/Ikonex-Systems/Ikonex Academy Backend/nginx.conf" /etc/nginx/sites-available/ikonex-academy-api
-   sudo ln -sf /etc/nginx/sites-available/ikonex-academy-api /etc/nginx/sites-enabled/
-   sudo systemctl reload nginx
+   ```json
+   {
+     "api_url": "http://162.35.160.74:8080/api"
+   }
    ```
-6. **Set Relative Endpoint Config**:
-   Write relative API config for the unified server:
+5. **Configure Nginx Server Name**:
    ```bash
-   echo '{"api_url": "/api"}' > "/var/www/Ikonex-Systems/Ikonex Academy Frontend/config.json"
+   cd "/var/www/ikonex-academy/Ikonex Academy Backend"
+   nano nginx.conf
+   # Update server_name to 162.35.160.74
+   ```
+6. **Launch Containers (Docker Compose)**:
+   ```bash
+   docker compose up -d --build
    ```
 
 ---
