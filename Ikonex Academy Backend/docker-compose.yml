@@ -66,10 +66,6 @@ services:
       retries: 3
       start_period: 15s
 
-volumes:
-  pgdata:
-    driver: local
-
   nginx:
     image: nginx:alpine
     container_name: ikonex-academy-nginx
@@ -82,3 +78,7 @@ volumes:
       - ../Ikonex\ Academy\ Frontend:/usr/share/nginx/html:ro
     depends_on:
       - backend
+
+volumes:
+  pgdata:
+    driver: local

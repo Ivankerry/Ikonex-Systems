@@ -70,7 +70,7 @@ Save and exit.
 Start the containers in the background:
 
 ```bash
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 You can verify the containers are running with:
@@ -97,5 +97,5 @@ git pull origin main
 
 # Rebuild all containers
 cd "Ikonex Academy Backend"
-docker-compose up -d --build
+docker compose up -d --build
 ```
