@@ -78,18 +78,35 @@ exports.getStreamResults = async (streamId, term, year) => {
  * @returns {Promise<object>}
  */
 exports.getStudentResults = async (studentId, term, year) => {
-  const scores = await scoresQueries.findByFilters({ student_id: studentId, term, year });
+  // We need the student's stream to calculate positions against peers
+  const student = await studentQueries.findById(studentId);
+  if (!student) throw Object.assign(new Error('Student not found'), { statusCode: 404 });
 
-  const totalMarks = scores.reduce((sum, s) => sum + parseFloat(s.total_score), 0);
-  const average    = scores.length ? totalMarks / scores.length : 0;
-  const gradeInfo  = getGrade(average);
+  // Get full stream results to extract accurate subject positions and class rank
+  const streamResults = await exports.getStreamResults(student.stream_id, term, year);
+  const studentResult = streamResults.find(r => r.student_id === studentId);
 
+  if (!studentResult) {
+    // Fallback if no scores exist yet
+    return {
+      student_id:  studentId,
+      scores:      [],
+      total_marks: 0,
+      average:     0,
+      grade:       'E',
+      grade_label: 'Fail',
+      position:    'N/A'
+    };
+  }
+
+  // streamResults maps 'scores' to 'subjects', so we map it back to 'scores' for the frontend
   return {
     student_id:  studentId,
-    scores,
-    total_marks: parseFloat(totalMarks.toFixed(2)),
-    average:     parseFloat(average.toFixed(2)),
-    grade:       gradeInfo.grade,
-    grade_label: gradeInfo.label,
+    scores:      studentResult.subjects,
+    total_marks: studentResult.total_marks,
+    average:     studentResult.average,
+    grade:       studentResult.grade,
+    grade_label: studentResult.grade_label,
+    position:    studentResult.position
   };
 };
