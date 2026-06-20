@@ -33,6 +33,7 @@ export function openModal(title, bodyHTML, onConfirm) {
   currentOnConfirm = onConfirm;
   confirmBtn.textContent = 'Save';
   confirmBtn.className = 'btn btn--primary';
+  confirmBtn.style.display = ''; // Reset display in case it was hidden by detail views
 
   overlay.classList.add('is-open');
 }
@@ -70,6 +71,7 @@ export function openConfirmDialog(message, onConfirm) {
   currentOnConfirm = onConfirm;
   confirmBtn.textContent = 'Confirm';
   confirmBtn.className = 'btn btn--danger';
+  confirmBtn.style.display = ''; // Reset display
 
   overlay.classList.add('is-open');
 }
