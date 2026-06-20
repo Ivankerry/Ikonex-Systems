@@ -53,9 +53,27 @@ nano .env
 
 In the `.env` file, update the following variables:
 - `DB_PASSWORD`: Set a strong, secure password for the database.
-- `CORS_ORIGIN`: Set this to `http://162.35.160.74` (or your domain name) so the frontend can communicate with the backend.
+- `CORS_ORIGIN`: Set this to `http://162.35.160.74:8080` (or your domain name) so the frontend can communicate with the backend.
 
 Save and exit `nano` (`Ctrl+O`, `Enter`, `Ctrl+X`).
+
+Next, we must configure the frontend to talk to the backend, because `config.json` is git-ignored:
+```bash
+# Go to the frontend directory
+cd "../Ikonex Academy Frontend"
+
+# Copy the example config
+cp config.json.example config.json
+
+# Edit the config file
+nano config.json
+```
+Change `"api_url"` to `"http://162.35.160.74:8080/api"`. Save and exit.
+
+Then go back to the backend directory:
+```bash
+cd "../Ikonex Academy Backend"
+```
 
 Next, edit `nginx.conf` to ensure the server name is correct:
 ```bash
