@@ -150,44 +150,73 @@ To bypass browser **Mixed Content Blocks** (which prevent secure `https` fronten
 
 ---
 
-## 🚢 Production VPS Deployment (Docker & Nginx)
+## 🚢 Production VPS Deployment (Docker)
 
-This stack is pre-configured to build securely on your VPS at IP `YOUR_VPS_IP`.
+This stack is pre-configured to build securely on your VPS.
 
-### 1. VPS Host Setup (Firewall)
-Allow web and proxy traffic through the UFW firewall:
+### 1. VPS Host Setup (Firewall & Prerequisites)
+Allow web traffic through the UFW firewall:
 ```bash
 sudo ufw allow 22/tcp
 sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
+sudo ufw allow 8080/tcp
 sudo ufw enable
 ```
 
+Install Docker and Git if not already installed:
+```bash
+sudo apt update && sudo apt install git docker.io docker-compose-v2 -y
+```
+
 ### 2. Pull Code & Prepare Environment
-Clone the repository to `/var/www/Ikonex-Systems` on the VPS and configure `.env` inside `Ikonex Academy Backend`:
+Create a directory and clone the repository:
+```bash
+mkdir -p /var/www/
+cd /var/www/
+git clone https://github.com/Ivankerry/Ikonex-Systems.git ikonex-academy
+```
+
+Configure backend `.env` inside `Ikonex Academy Backend`:
+```bash
+cd "ikonex-academy/Ikonex Academy Backend"
+cp .env.production.example .env
+nano .env
+```
+Update variables:
 ```env
 DB_USER=postgres
 DB_PASSWORD=YOUR_STRONG_GENERATED_PASSWORD_HERE
 DB_NAME=ikonex_academy
-CORS_ORIGIN=https://your-frontend-deployment.vercel.app
+CORS_ORIGIN=http://YOUR_VPS_IP:8080
+```
+Update `nginx.conf` server name:
+```bash
+nano nginx.conf
+# Change `server_name YOUR_VPS_IP_OR_DOMAIN;` to your VPS IP or Domain
+```
+
+Configure frontend `config.json` inside `Ikonex Academy Frontend`:
+```bash
+cd "../Ikonex Academy Frontend"
+cp config.json.example config.json
+nano config.json
+```
+Update variables:
+```json
+{
+  "api_url": "http://YOUR_VPS_IP:8080/api"
+}
 ```
 
 ### 3. Launch Docker Containers
-From the `Ikonex Academy Backend` folder, build and run the services:
+From the `Ikonex Academy Backend` folder, build and run all services:
 ```bash
-sudo docker compose up -d --build
+cd "../Ikonex Academy Backend"
+docker compose up -d --build
 ```
-* **PostgreSQL Service (`db`)**: Isolated inside the Docker network. Schema migrations apply automatically on first launch via volume mounting.
-* **Express Backend Service (`backend`)**: Restricts port mapping to `127.0.0.1:5000:5000` on the host, preventing bypass of the host firewall.
-
-### 4. Setup Host Nginx Reverse Proxy
-Copy the proxy template to Nginx and enable rate-limiting (pre-configured for 10 requests/sec limit and 20 burst tolerance):
-```bash
-sudo cp nginx.conf /etc/nginx/sites-available/ikonex-academy-api
-sudo ln -sf /etc/nginx/sites-available/ikonex-academy-api /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx
-```
+* **PostgreSQL Service (`db`)**: Isolated inside the Docker network.
+* **Express Backend Service (`backend`)**: Internal Node API, accessed only via Nginx.
+* **Nginx Service (`nginx`)**: Serves the static frontend and reverse proxies `/api` to the backend. Exposed securely on port `8080`.
 
 ---
 
