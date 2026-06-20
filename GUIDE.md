@@ -8,9 +8,9 @@ This document provides a comprehensive guide to setting up, deploying, and using
 ## 🔗 Project Links
 
 * **Git Repository URL**: `https://github.com/Ivankerry/Ikonex-Systems.git`
-* **Hosted Application URL (Primary - Unified VPS)**: [http://162.35.160.74](http://162.35.160.74)
-
-
+* **Hosted Application URL (Primary - Unified VPS)**: [http://162.35.160.74:8080](http://162.35.160.74:8080)
+* **Hosted Application URL (Alternative - Vercel)**: [https://ikonex-systems.vercel.app](https://ikonex-systems.vercel.app)
+  *(Note: Vercel runs on HTTPS. To call the HTTP VPS API from Vercel without browser mixed-content blocks, enable "Insecure Content" in Vercel's site settings. The Unified VPS URL does not require this as it uses same-origin routing.)*
 
 ---
 
