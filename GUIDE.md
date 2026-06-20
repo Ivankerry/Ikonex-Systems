@@ -65,7 +65,7 @@ This configuration serves the frontend assets and proxies API calls entirely thr
 
 1. **SSH into the VPS**:
    ```bash
-   ssh root@162.35.160.74
+   ssh root@your_vps_ip
    ```
 2. **Clone/Pull code**:
    ```bash
